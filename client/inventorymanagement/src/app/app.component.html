@@ -1,0 +1,39 @@
+
+<form [formGroup]="form" (ngSubmit)="onadd()" >
+  <div class="form-group">
+      <input type="text"  placeholder="Enter name" formControlName="name">
+  </div>
+  <div class="form-group">
+      <input type="text"  placeholder="description" formControlName="description">
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Enter price" formControlName="price">
+</div>
+  <button *ngIf="ADD" class="btn btn-primary btn-block" type="submit" [disabled]="!form.valid">ADD</button>
+  
+</form>
+<button *ngIf="!ADD" class="btn btn-primary btn-block" type="submit" [disabled]="!form.valid">update</button>
+
+<div class="container">
+  <table class="table table-striped table-bordered">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Edit</th>
+              <th>Delete</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of items;let i=index;">
+              <td>{{item.name}} </td>
+              <td>{{item.description}}</td>
+              <td>{{item.price}}</td>
+              <td><button (click)="edit(item,i)">Edit</button></td>
+              <td><button (click)="Del(item,i)">Delete</button></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
